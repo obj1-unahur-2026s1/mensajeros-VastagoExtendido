@@ -53,6 +53,9 @@ object chuck {
     method peso() = 80
 
     method puedeLlamar() = true 
+    
+    method puedeLlegarAlDestino(unDestino) = unDestino.puedePasar(self)
+    method puedeEntregarPaqueteAlDestino(unDestino) = self.puedeLlegarAlDestino(unDestino) and paquete.estáPago()
 }
 
 // - -------------------------------- NEO -----------------------------------
@@ -67,6 +70,9 @@ object neo {
 
     method noTieneCreditos(){creditosActuales = false} 
     method ahoraTieneCreditos() {creditosActuales = true}
+
+    method puedeLlegarAlDestino(unDestino) = unDestino.puedePasar(self)
+    method puedeEntregarPaqueteAlDestino(unDestino) = self.puedeLlegarAlDestino(unDestino) and paquete.estáPago()
 
 }
 
