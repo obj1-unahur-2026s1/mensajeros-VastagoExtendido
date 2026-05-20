@@ -1,18 +1,14 @@
+import mensajeros.*
+
+
 object matrix{
 
-    method puedeDejarPasarA(unMensajero){
-        if (unMensajero.peso() < 1000) self.dejarPasar()
-    }
-    method dejarPasar() {}
+    method puedePasar(unMensajero)= unMensajero.puedeLlamar()
 }
 
 object puenteMoron{
 
-    method puedeDejarPasarA(unMensajero){
-        if (unMensajero.puedeHacerLlamada()) self.dejarPasar()
-    }
-
-    method dejarPasar() {}
+    method puedePasar(culquierCosa) = culquierCosa.peso() <= 1000
 }
 
 

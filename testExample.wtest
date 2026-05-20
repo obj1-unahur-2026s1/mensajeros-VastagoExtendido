@@ -1,9 +1,14 @@
-import example.pepita
+import destinos.*
+import mensajeros.*
 
-describe "group of tests for pepita" {
 
-  test "pepita has initial energy" {
-    assert.equals(100, pepita.energy())
+// TEST 1 --------------------------------------------------------------------------------------------
+
+describe "testeo de toooodo" {
+
+  test "roberto pesa en total 90kg, puede llevar un paquete que está a pago en un camion acoplado" {
+    camion.agregarElCoplado(bicicleta)
+    assert.that(roberto.puedeEntregarPaqueteAlDestino(puenteMoron))
   }
 
 }
