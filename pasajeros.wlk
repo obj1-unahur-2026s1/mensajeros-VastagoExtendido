@@ -1,23 +1,30 @@
 object roberto {
 
     var vehiculoActual = bicicleta
+    var peso = 0
+    var plata = 0
 
     method vehiculoActual() = vehiculoActual
     method cambiarVehiculoA(unVehiculo) {vehiculoActual = unVehiculo}
 
-    method pesoPropio() = 1
+    method pesoPropio() = peso
 
     method elPesoTotalConElVehiculo(unVehiculo){ // unVehiculo == bicicleta
         if(self.tieneBicicleta()) { 
-            self.pesoPropio() + unVehiculo.pesoPropio()
+            return self.pesoPropio() + unVehiculo.pesoVehiculo()
         } else{ 
-            self.pesoPropio() + unVehiculo.pesoVehiculo() 
+            return self.pesoPropio() + unVehiculo.pesoVehiculo() 
         }
     }
 
     method tieneBicicleta(){
         return vehiculoActual == self.vehiculoActual()
-    } 
+    }
+    
+    method plata() = plata
+
+    method tieneCubiertas() = true
+    method puedeLlamarA(unaPersona) {false}  
 }
 
 object bicicleta {
@@ -33,6 +40,26 @@ object camion {
     method pesoVehiculo() = 500 * acoplados.size()
 }
 
-object pepe {
+// - -------------------------------- CHUCK NORRIS -----------------------------------
+
+
+object chuck {
+    method peso() = 80
+
+    method puedeLlamarA(unaPersona) = true 
+}
+
+// - -------------------------------- NEO -----------------------------------
+
+
+object neo {
+    var creditosActuales = true
+
+    method peso() = 0
+
+    method puedeLlamarA(unaPersona) = if(creditosActuales)1 else 2 // corregir
+
+    method noTieneCreditos(){creditosActuales = false} 
+    method ahoraTieneCreditos() {creditosActuales = true}
 
 }
