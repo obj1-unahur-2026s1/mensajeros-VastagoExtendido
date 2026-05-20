@@ -1,17 +1,19 @@
 import destinos.*
+import empresa.*
+
 
 
 object roberto {
 
+    const destinos = []
     var vehiculoActual = bicicleta
     var peso = 90
-    var plata = 0
 
     method vehiculoActual() = vehiculoActual
     method cambiarVehiculoA(unVehiculo) {vehiculoActual = unVehiculo}
 
     method pesoPropio() = peso
-    method plata() = plata
+    method plata() = 0
 
     method peso(){ // unVehiculo == bicicleta
         if(self.viajaEnBici()) { 
@@ -31,6 +33,8 @@ object roberto {
     method entregarPaquete() {
       // A COMPLETAR
     }
+
+    method irAlDestino(unDestino) {if(self.puedeLlegarAlDestino(unDestino)) destinos.add(unDestino)}
 }
 
 object bicicleta {
@@ -50,18 +54,23 @@ object camion {
 
 
 object chuck {
+    const destinos = []
     method peso() = 80
 
     method puedeLlamar() = true 
-    
+
     method puedeLlegarAlDestino(unDestino) = unDestino.puedePasar(self)
     method puedeEntregarPaqueteAlDestino(unDestino) = self.puedeLlegarAlDestino(unDestino) and paquete.estáPago()
+
+    method irAlDestino(unDestino) {if(self.puedeLlegarAlDestino(unDestino)) destinos.add(unDestino)}
+
 }
 
 // - -------------------------------- NEO -----------------------------------
 
 
 object neo {
+    const destinos = []
     var creditosActuales = true
 
     method peso() = 0
@@ -74,10 +83,8 @@ object neo {
     method puedeLlegarAlDestino(unDestino) = unDestino.puedePasar(self)
     method puedeEntregarPaqueteAlDestino(unDestino) = self.puedeLlegarAlDestino(unDestino) and paquete.estáPago()
 
+    method irAlDestino(unDestino) {if(self.puedeLlegarAlDestino(unDestino) and !destinos.contains(unDestino)) destinos.add(unDestino)}
+
+    method destinos() = destinos 
 }
 
-// ------------------------- PAQUETE ----------------------------------------------------------
-
-object paquete{
-    method estáPago() = true // modicicaar
-}
