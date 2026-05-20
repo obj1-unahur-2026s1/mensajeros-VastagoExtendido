@@ -57,7 +57,7 @@ object neo {
 
     method peso() = 0
 
-    method puedeLlamarA(unaPersona) = if(creditosActuales)1 else 2 // corregir
+    method puedeLlamarA(unaPersona) = creditosActuales
 
     method noTieneCreditos(){creditosActuales = false} 
     method ahoraTieneCreditos() {creditosActuales = true}
