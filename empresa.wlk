@@ -32,6 +32,7 @@ object mensajeria {
 
 object paquete{
     var estáPagado = false
+    var destino = puenteMoron
 
     method precio() = 50 
     method estáPago() = estáPagado // modicicaar
@@ -39,21 +40,32 @@ object paquete{
     method comprarPaquete() {estáPagado = true} 
     method reiniciarPago() {estáPagado = false} 
 
+    method puedeSerEntregadoPor(unMensajero){
+        return self.estáPago() and destino.puedePasar(unMensajero)
+    }
+
 }
 
 object paquetito{
     method precio() = 0 
     method estáPago() = true
+    method puedeSerEntregadoPor(unMensajero) = true
 }
 
 object paqueton {
 
     var precioAPagar =  100 * mensajeria.destinos().size()
+    var destino = matrix
 
     method precio() = precioAPagar
+    method destino() = destino
 
-// consultar el precio antes de seguir pagando, sino el numero que retorna seria un entero negativo.
-    method pagarParcialmentePaquetonPor(unPrecio) { precioAPagar -= unPrecio}
+    // consultar el precio antes de seguir pagando, sino el numero que retorna seria un entero negativo.
+    method pagarParcialmentePaquetonPor(unPrecio) {
+         precioAPagar -= unPrecio
+    }
+    method estáPago() =  precioAPagar == 0 
 
-    method estáPago() =  precioAPagar == 0
+    method puedeSerEntregadoPor(unMensajero) = self.estáPago() and destino.all({d => d.puedePasar(unMensajero)})
+
 }
